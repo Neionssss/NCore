@@ -1,4 +1,4 @@
-package ncore.a;
+package ncore.mixins;
 
 import net.minecraft.client.gui.components.ChatComponent;
 import net.minecraft.client.multiplayer.chat.GuiMessageSource;

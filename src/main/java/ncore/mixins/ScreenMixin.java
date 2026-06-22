@@ -1,4 +1,4 @@
-package ncore.a;
+package ncore.mixins;
 
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.Screen;

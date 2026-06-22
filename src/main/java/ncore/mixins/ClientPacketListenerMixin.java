@@ -1,4 +1,4 @@
-package ncore.a;
+package ncore.mixins;
 
 import net.minecraft.client.gui.screens.LevelLoadingScreen;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -24,7 +24,7 @@ public abstract class ClientPacketListenerMixin {
     public void var1(LocalPlayer player, ClientLevel level, LevelLoadingScreen.Reason reason, CallbackInfo ci) {
         ci.cancel();
         if (levelLoadTracker == null) levelLoadTracker = new LevelLoadTracker();
-        levelLoadTracker.startClientLoad(player, level, mc.levelRenderer);
+        levelLoadTracker.startClientLoad(player, level);
         mc.setScreenAndShow(null);
     }
 }

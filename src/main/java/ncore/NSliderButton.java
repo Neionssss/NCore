@@ -18,7 +18,7 @@ public class NSliderButton extends NButton {
         super(x, y, width, height, label);
         this.min = min;
         this.max = max;
-        this.value = Math.max(min, Math.min(max, startValue));
+        this.value = Math.clamp(startValue, min, max);
         this.onChange = onChange;
     }
 
@@ -53,7 +53,7 @@ public class NSliderButton extends NButton {
 
     private void updateValue(double mouseX) {
         double percent = (mouseX - x) / width;
-        value = Math.max(min, Math.min(max, min + percent * (max - min)));
+        value = Math.clamp(min + percent * (max - min), min, max);
         if (onChange != null) onChange.accept(value);
     }
 }

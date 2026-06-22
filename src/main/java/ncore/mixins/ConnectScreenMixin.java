@@ -1,4 +1,4 @@
-package ncore.a;
+package ncore.mixins;
 
 import io.netty.channel.ChannelFuture;
 import ncore.NActionButton;
@@ -34,7 +34,6 @@ public abstract class ConnectScreenMixin extends Screen {
     private int lastWidth = -1;
     private int lastHeight = -1;
 
-
     protected ConnectScreenMixin(Component title) {
         super(title);
     }
@@ -51,7 +50,7 @@ public abstract class ConnectScreenMixin extends Screen {
         }
 
         if (connection != null) connection.disconnect(Component.empty());
-        minecraft.setScreen(new DisconnectedScreen(null, Component.empty(), Component.literal("Cancelled")));
+        minecraft.setScreenAndShow(new DisconnectedScreen(null, Component.empty(), Component.literal("Cancelled")));
     }
 
     @Override

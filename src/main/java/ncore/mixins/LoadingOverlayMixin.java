@@ -1,12 +1,12 @@
-package ncore.a;
+package ncore.mixins;
 
 import com.mojang.blaze3d.pipeline.RenderPipeline;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.LoadingOverlay;
-import net.minecraft.client.renderer.state.gui.GuiRenderState;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.resources.ReloadInstance;
+import org.joml.Vector4f;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -27,6 +27,8 @@ public abstract class LoadingOverlayMixin {
     @Redirect(method = "extractRenderState", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;fill(IIIII)V"))
     private void var3(GuiGraphicsExtractor instance, int x0, int y0, int x1, int y1, int col) {}
 
-    @Redirect(method = "extractRenderState", at = @At(value = "FIELD", target = "Lnet/minecraft/client/renderer/state/gui/GuiRenderState;clearColorOverride:I", opcode = org.objectweb.asm.Opcodes.PUTFIELD))
-    private void cancelColorOverride(GuiRenderState instance, int value) {}
+    @Redirect(method = "extractRenderState", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/ARGB;setVector4fFromARGB32(Lorg/joml/Vector4f;I)Lorg/joml/Vector4f;"))
+    private Vector4f var4(Vector4f dest, int color) {
+        return null;
+    }
 }

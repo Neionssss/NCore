@@ -1,4 +1,4 @@
-package ncore.a;
+package ncore.mixins;
 
 import ncore.NActionButton;
 import ncore.NCore;
