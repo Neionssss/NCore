@@ -9,12 +9,12 @@ import java.util.function.Consumer;
 import static ncore.NCore.mc;
 
 public class NSliderButton extends NButton {
-    private final double min, max;
+    private final int min, max;
     private double value;
-    private final Consumer<Double> onChange;
+    private final Consumer<Integer> onChange;
     private boolean dragging = false;
 
-    public NSliderButton(int x, int y, int width, int height, String label, double min, double max, double startValue, Consumer<Double> onChange) {
+    public NSliderButton(int x, int y, int width, int height, String label, int min, int max, int startValue, Consumer<Integer> onChange) {
         super(x, y, width, height, label);
         this.min = min;
         this.max = max;
@@ -29,7 +29,7 @@ public class NSliderButton extends NButton {
         int sliderX = (int) (x + (value - min) / (max - min) * width);
         context.fill(sliderX - 2, y, sliderX + 2, y + height, 0xFFAAAAAA);
 
-        String text = label + ": " + String.format("%.2f", value);
+        String text = label + ": " + (int) value;
         int textX = x + width / 2;
         int textY = y + (height - mc.font.lineHeight) / 2;
         context.centeredText(mc.font, text, textX, textY, Color.white.getRGB());
@@ -53,7 +53,7 @@ public class NSliderButton extends NButton {
 
     private void updateValue(double mouseX) {
         double percent = (mouseX - x) / width;
-        value = Math.clamp(min + percent * (max - min), min, max);
-        if (onChange != null) onChange.accept(value);
+        value = (int) Math.clamp(min + percent * (max - min), min, max);
+        if (onChange != null) onChange.accept((int) value);
     }
 }
