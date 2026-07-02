@@ -44,11 +44,13 @@ public abstract class NButton {
 
     public void mouseReleased(final MouseButtonEvent event) {}
 
-    public void mouseClicked(final MouseButtonEvent event) {
+    public boolean mouseClicked(final MouseButtonEvent event) {
         if (event.button() == 0 && isHovered(event.x(), event.y())) {
             onClick(event);
             mc.getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.UI_BUTTON_CLICK, 1.0F));
+            return true;
         }
+        return false;
     }
 
     public boolean isHovered(double mX, double mY) {
