@@ -29,12 +29,12 @@ tasks {
 
     processResources {
         val mixinFiles = mutableListOf<String>()
-        file("src/main/java/ncore/a").walkTopDown().filter { it.isFile && it.extension == "java" }.forEach { file ->
+        file("src/main/java/ncore/mixins").walkTopDown().filter { it.isFile && it.extension == "java" }.forEach { file ->
             val className = file.path.substringAfterLast("/").removeSuffix(".java")
             mixinFiles.add(className)
         }
 
-        val mixinJson = mapOf("package" to "ncore.a", "client" to mixinFiles)
+        val mixinJson = mapOf("package" to "ncore.mixins", "client" to mixinFiles)
         val fabricJson = mapOf(
             "schemaVersion" to 1,
             "id" to modName,
