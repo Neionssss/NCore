@@ -66,7 +66,7 @@ public class RenderUtils {
         drawText(String.valueOf(health), interpPos.add(0, entity.getEyeHeight(), 0), scale, color);
     }
 
-    private static void drawText(String s, Vec3 vec, double scale, Color color) {
+    public static void drawText(String s, Vec3 vec, double scale, Color color) {
         Gizmos.billboardText(s, vec, TextGizmo.Style.forColorAndCentered(color.getRGB()).withScale((float) scale)).setAlwaysOnTop();
     }
 }
