@@ -25,6 +25,6 @@ public abstract class ClientPacketListenerMixin {
         ci.cancel();
         if (levelLoadTracker == null) levelLoadTracker = new LevelLoadTracker();
         levelLoadTracker.startClientLoad(player, level);
-        mc.setScreenAndShow(null);
+        mc.gui.setScreen(null);
     }
 }
