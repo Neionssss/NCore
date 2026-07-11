@@ -14,9 +14,9 @@ public class NCore implements ClientModInitializer {
     public static final Minecraft mc = Minecraft.getInstance();
 
     public static String getGame() {
-        if (mc.level == null || mc.player == null) return "";
+        if (mc.level == null || mc.player == null) return null;
         var objective = mc.level.getScoreboard().getDisplayObjective(DisplaySlot.SIDEBAR);
-        if (objective == null) return "";
+        if (objective == null) return null;
         return unformattedText(objective.getDisplayName().getString()).toUpperCase();
     }
 
