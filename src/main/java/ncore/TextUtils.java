@@ -19,6 +19,14 @@ import static ncore.NCore.mc;
 
 public class TextUtils {
 
+    @SafeVarargs
+    public static <T> boolean equalsOneOf(T target, T... options) {
+        for (T option : options) {
+            if (target.equals(option)) return true;
+        }
+        return false;
+    }
+
     public static String safeName(ItemStack stack) {
         Component t = stack.getCustomName();
         return t != null ? t.getString() : "error";
