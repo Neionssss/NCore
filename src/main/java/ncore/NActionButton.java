@@ -6,6 +6,7 @@ import net.minecraft.client.input.MouseButtonEvent;
 import java.awt.*;
 
 import static ncore.NCore.mc;
+import static ncore.RenderUtils.roundedFill;
 
 public class NActionButton extends NButton {
     private final String label;
