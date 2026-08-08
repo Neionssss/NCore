@@ -1,4 +1,4 @@
-package ncore;
+gpackage ncore;
 
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.gizmos.GizmoStyle;
@@ -74,4 +74,24 @@ public class RenderUtils {
     public static void drawText(String s, Vec3 vec, double scale, Color color) {
         Gizmos.billboardText(s, vec, TextGizmo.Style.forColorAndCentered(color.getRGB()).withScale((float) scale)).setAlwaysOnTop();
     }
+
+    public static void drawLine(GuiGraphicsExtractor graphics, float x1, float y1, float x2, float y2, float thickness, int color) {
+        float dx = x2 - x1;
+        float dy = y2 - y1;
+
+        float length = (float) Math.sqrt(dx * dx + dy * dy);
+        int steps = Math.max(1, (int) Math.ceil(length));
+
+        int pixelSize = Math.max(1, Math.round(thickness));
+
+        for (int i = 0; i <= steps; i++) {
+            float t = i / (float) steps;
+
+            int x = Math.round(x1 + dx * t);
+            int y = Math.round(y1 + dy * t);
+
+            graphics.fill(x - pixelSize / 2, y - pixelSize / 2, x - pixelSize / 2 + pixelSize, y - pixelSize / 2 + pixelSize, color);
+        }
+    }
+    
 }
