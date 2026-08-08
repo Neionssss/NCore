@@ -22,7 +22,7 @@ public class NActionButton extends NButton {
     @Override
     public void draw(GuiGraphicsExtractor context, double mouseX, double mouseY) {
         Color color2 = isHovered(mouseX, mouseY) ? color.darker() : color;
-        context.fill(x, y, x + width, y + height, color2.getRGB());
+        roundedFill(context, x, y, width, height, color2.getRGB());
         int textX = x + width / 2;
         int textY = y + (height - mc.font.lineHeight) / 2;
         context.centeredText(mc.font, label, textX, textY, Color.white.getRGB());
