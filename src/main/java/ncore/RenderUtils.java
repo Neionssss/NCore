@@ -16,6 +16,11 @@ import static ncore.NCore.mc;
 
 public class RenderUtils {
 
+    public static void roundedFill(GuiGraphicsExtractor context, int x, int y, int width, int height, int color) {
+        context.fill(x, y + 1, x + width, y + height - 1, color);
+        context.fill(x + 1, y, x + width - 1, y + 1, color);
+        context.fill(x + 1, y + height - 1, x + width - 1, y + height, color);
+    }
 
     public static void highlightSlot(GuiGraphicsExtractor context, Slot slot, Color color) {
         context.fill(slot.x, slot.y, slot.x + 16, slot.y + 16, color.getRGB());
