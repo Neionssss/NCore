@@ -24,6 +24,8 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import static ncore.RenderUtils.drawLine;
+
 @Mixin(PauseScreen.class)
 public abstract class PauseScreenMixin extends Screen {
 
@@ -117,6 +119,7 @@ public abstract class PauseScreenMixin extends Screen {
             return;
         }
 
+        // play
         graphics.fill(0,0, cWidth / 32, cHeight, Color.cyan.darker().getRGB());
         int x1 = (int) (cWidth * 0.003);
         int cy = (int) (cHeight * 0.9);
@@ -129,21 +132,44 @@ public abstract class PauseScreenMixin extends Screen {
             int bottom = size - i / 2;
             graphics.fill(left, top, x1 + i, bottom, 0xFF44FF44);
         }
-
-        int segments = 48;
+       
+        // rejoin
+        int segments = 16;
         float cx = x1 + size / 2f;
-        for (int i = 0; i < segments * 3 / 4; i++) {
-            double angle1 = Math.toRadians(i * 360.0 / segments);
-            double angle2 = Math.toRadians((i + 1) * 360.0 / segments);
+        float cy = y1 + size / 2f;
+        float radius = size * 0.45f;
+        float thickness = 4.0f;
+        double startAngle = Math.toRadians(45);
+        double endAngle = Math.toRadians(315);
 
-            int xStart = (int) (cx + Math.cos(angle1) * size / 1.75);
-            int yStart = (int) (cy + Math.sin(angle1) * size / 1.75);
-            int xEnd = (int) (cx + Math.cos(angle2) * size / 3);
-            int yEnd = (int) (cy + Math.sin(angle2) * size / 3);
+        for (int i = 0; i < segments; i++) {
+            double angle1 = startAngle + (endAngle - startAngle) * i / segments;
+            double angle2 = startAngle + (endAngle - startAngle) * (i + 1) / segments;
+            float xStart = cx + (float) Math.cos(angle1) * radius;
+            float yStart = cy + (float) Math.sin(angle1) * radius;
+            float xEnd = cx + (float) Math.cos(angle2) * radius;
+            float yEnd = cy + (float) Math.sin(angle2) * radius;
 
-            graphics.fill(xStart, yStart, xEnd, yEnd, 0xFFFFFFFF);
+            drawLine(graphics, xStart, yStart, xEnd, yEnd, thickness, 0xFFFFFFFF);
         }
 
+        float arrowSize = size * 0.2f;
+        float arrowX = cx + (float) Math.cos(endAngle) * radius;
+        float arrowY = cy + (float) Math.sin(endAngle) * radius;
+        float tangentX = -(float) Math.sin(endAngle);
+        float tangentY = (float) Math.cos(endAngle);
+        float normalX = -tangentY;
+        float baseX = arrowX - tangentX * arrowSize;
+        float baseY = arrowY - tangentY * arrowSize;
+        float leftX = baseX + normalX * arrowSize;
+        float leftY = baseY + tangentX * arrowSize;
+        float rightX = baseX - normalX * arrowSize;
+        float rightY = baseY - tangentX * arrowSize;
+
+        drawLine(graphics, arrowX, arrowY, leftX, leftY, thickness, Color.green.getRGB());
+        drawLine(graphics, arrowX, arrowY, rightX, rightY, thickness, Color.green.getRGB());
+        
+        // exit
         int yExit = (int) (cHeight * 0.95);
         for (int i = 0; i < size; i++) {
             graphics.fill(i, yExit + i, x1 + i + 1, yExit + i + 1, colorExit); // \ диагональ \
@@ -152,6 +178,7 @@ public abstract class PauseScreenMixin extends Screen {
 
         NButton.getButtons().forEach(btn -> btn.draw(graphics, mouseX, mouseY));
     }
+    
     @Override
     public boolean mouseClicked(final @NonNull MouseButtonEvent event, final boolean doubleClick) {
         for (NButton btn : NButton.getButtons()) btn.mouseClicked(event);
