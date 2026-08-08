@@ -1,4 +1,4 @@
-gpackage ncore;
+package ncore;
 
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.gizmos.GizmoStyle;
