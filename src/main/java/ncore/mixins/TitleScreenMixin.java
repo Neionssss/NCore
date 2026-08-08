@@ -18,6 +18,11 @@ public abstract class TitleScreenMixin extends Screen {
         super(title);
     }
 
+    @Inject(method = "init", at = @At("HEAD"), cancellable = true)
+    private void s(CallbackInfo ci) {
+        ci.cancel();
+    }
+
     @Inject(method = "extractRenderState", at = @At("HEAD"), cancellable = true)
     private void ss(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a, CallbackInfo ci) {
         ci.cancel();
