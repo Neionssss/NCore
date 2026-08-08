@@ -7,6 +7,7 @@ import java.awt.*;
 import java.util.function.Consumer;
 
 import static ncore.NCore.mc;
+import static ncore.RenderUtils.roundedFill;
 
 public class NSliderButton extends NButton {
     private final int min, max;
