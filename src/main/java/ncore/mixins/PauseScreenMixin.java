@@ -122,7 +122,7 @@ public abstract class PauseScreenMixin extends Screen {
         // play
         graphics.fill(0,0, cWidth / 32, cHeight, Color.cyan.darker().getRGB());
         int x1 = (int) (cWidth * 0.003);
-        int cy = (int) (cHeight * 0.9);
+        int y1 = (int) (cHeight * 0.9);
         int size = Math.min(cWidth, cHeight) / 20;
         int colorExit = 0xFFFF4444;
 
