@@ -92,6 +92,5 @@ public class RenderUtils {
 
             graphics.fill(x - pixelSize / 2, y - pixelSize / 2, x - pixelSize / 2 + pixelSize, y - pixelSize / 2 + pixelSize, color);
         }
-    }
-    
+    } 
 }
