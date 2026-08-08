@@ -24,7 +24,7 @@ public class NSliderButton extends NButton {
 
     @Override
     public void draw(GuiGraphicsExtractor context, double mouseX, double mouseY) {
-        context.fill(x, y, x + width, y + height, isHovered(mouseX, mouseY) ? 0xFF555555 : 0xFF333333);
+        roundedFill(context, x, y, width, height, isHovered(mouseX, mouseY) ? 0xFF555555 : 0xFF333333);
 
         int sliderX = (int) (x + (value - min) / (max - min) * width);
         context.fill(sliderX - 2, y, sliderX + 2, y + height, 0xFFAAAAAA);
