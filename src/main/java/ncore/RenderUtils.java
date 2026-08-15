@@ -50,15 +50,6 @@ public class RenderUtils {
         Gizmos.line(cam.getEyePosition(mc.getDeltaTracker().getGameTimeDeltaPartialTick(false)).add(cam.getLookAngle().scale(8)), end, color.getRGB()).setAlwaysOnTop();
     }
 
-    public static void renderNameTags(Entity entity, Color color) {
-        var interpPos = interpolateEntity(entity);
-        var distance = mc.player.distanceToSqr(interpPos);
-        var scale = 0.3 + 0.0015 * distance;
-        var s = TextUtils.substringAfter(TextUtils.safeName(entity), "]");
-
-        drawText(s, interpPos.add(0, entity.getEyeHeight(), 0), scale, color);
-    }
-
     public static void renderHealth(LivingEntity entity) {
         var interpPos = interpolateEntity(entity);
         var distance = mc.player.distanceToSqr(interpPos);
