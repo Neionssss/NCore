@@ -41,12 +41,6 @@ public class TextUtils {
         return Pattern.compile("(?i)§[0-9A-FK-OR]").matcher(string).replaceAll("");
     }
 
-    public static String substringAfter(String str, String separator) {
-        int pos = str.indexOf(separator);
-        if (pos == -1) return "";
-        return str.substring(pos + separator.length());
-    }
-
     public static void drawWrappedText(GuiGraphicsExtractor context, Font font, Component text, int x, int y, int maxWidth) {
         List<FormattedText> lines = font.getSplitter().splitLines(text, maxWidth, Style.EMPTY);
         int lineHeight = font.lineHeight;
